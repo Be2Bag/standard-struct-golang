@@ -1,0 +1,203 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for Standard Struct Golang API",
+        "title": "Standard Struct Golang API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/v1/auth/LoginWithProviderId": {
+            "post": {
+                "description": "Login with Health ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login with Health ID",
+                "parameters": [
+                    {
+                        "description": "Login with Health ID",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/authdto.RequestLoginWithHealthId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/example/": {
+            "post": {
+                "description": "คำอธิบาย API Create a new example",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example (ตัวอย่าง)"
+                ],
+                "summary": "Create a new example",
+                "parameters": [
+                    {
+                        "description": "Example request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/exampledto.ExampleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Example created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/example/send-notify/{cid}": {
+            "post": {
+                "description": "คำอธิบาย API Send Moph Line Notification",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example (ตัวอย่าง)"
+                ],
+                "summary": "Send Moph Line Notification",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "CID",
+                        "name": "cid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification sent successfully",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/example/{example_id}": {
+            "get": {
+                "description": "คำอธิบาย API Get an example by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example (ตัวอย่าง)"
+                ],
+                "summary": "Get an example by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Example ID",
+                        "name": "example_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Example retrieved successfully",
+                        "schema": {
+                            "$ref": "#/definitions/dto.BaseResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "authdto.RequestLoginWithHealthId": {
+            "type": "object",
+            "required": [
+                "code",
+                "redirect_uri"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "redirect_uri": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BaseResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message_en": {
+                    "type": "string",
+                    "example": "Example created successfully"
+                },
+                "message_th": {
+                    "type": "string",
+                    "example": "สร้างตัวอย่างสำเร็จ"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                },
+                "status_code": {
+                    "type": "integer",
+                    "example": 200
+                }
+            }
+        },
+        "exampledto.ExampleRequest": {
+            "type": "object",
+            "properties": {
+                "detail": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
