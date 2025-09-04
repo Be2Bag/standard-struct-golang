@@ -1,0 +1,1 @@
+# standard-struct-golang
